@@ -109,6 +109,87 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 ```
-Kemudian pada `main.html` saya membuat button dan juga snackbar pada file ini.
+Kemudian pada `main.dart` saya membuat button dan juga snackbar pada file ini. Sehingga `main.dart` saya menjadi seperti ini
+```
+import 'package:flutter/material.dart';
+import 'package:stockoverflow/menu.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Stock Overflow',
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        useMaterial3: true,
+      ),
+      home: const MyHomePage(title: 'WELCOME TO STOCKOVERFLOW BROWWW BERKELAS '),
+    );
+  }
+}
+
+class MyHomePage extends StatelessWidget {
+  final String title;
+
+  const MyHomePage({required this.title, Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(title),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            ElevatedButton.icon(
+              onPressed: () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text('Kamu telah menekan tombol Lihat Item')),
+                );
+              },
+              icon: Icon(Icons.list),
+              label: Text('Lihat Item'),
+            ),
+            ElevatedButton.icon(
+              onPressed: () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text('Kamu telah menekan tombol Tambah Item')),
+                );
+              },
+              icon: Icon(Icons.add),
+              label: Text('Tambah Item'),
+            ),
+            ElevatedButton.icon(
+              onPressed: () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text('Kamu telah menekan tombol Logout')),
+                );
+              },
+              icon: Icon(Icons.logout),
+              label: Text('Logout'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+```
+
+Di sini 
+- **MyApp** adalah root aplikasi dan menentukan tema aplikasi.
+- **MyHomePage** adalah halaman utama yang menampilkan AppBar dan tombol-tombol.
+- Masing-masing tombol (ElevatedButton) memiliki onPressed handler yang menampilkan SnackBar saat ditekan.
+-  Ketika tombol **Lihat Item** ditekan, muncul SnackBar dengan pesan **Kamu telah menekan tombol Lihat Item**.
+-  Ketika tombol **Tambah Item** ditekan, muncul SnackBar dengan pesan **Kamu telah menekan tombol Tambah Item**.
+- Ketika tombol **Logout** ditekan, muncul SnackBar dengan pesan **Kamu telah menekan tombol Logout**.
 
 
