@@ -42,7 +42,7 @@ Navigator.pushReplacement(
 
   
 **3. Sebutkan apa saja elemen input pada form yang kamu pakai pada tugas kali ini dan jelaskan mengapa kamu menggunakan elemen input tersebut!**
-
+   
 `TextFormField` digunakan untuk mengambil input teks seperti nama, harga, dan deskripsi.
 - Memiliki fitur pendukung untuk validasi input melalui properti validator, memastikan bahwa data yang dimasukkan sesuai dengan aturan yang diinginkan.
 - Memungkinkan untuk menyesuaikan tampilan input, seperti menambahkan placeholder, label, dan border melalui properti decoration.
@@ -50,7 +50,8 @@ Navigator.pushReplacement(
 `ElevatedButton` 
 - Memberikan tombol yang dapat diklik untuk memicu aksi terkait formulir, dalam hal ini, menyimpan data produk ke daftar.
 
-**4. Bagaimana penerapan clean architecture pada aplikasi Flutter? **
+**4.Bagaimana penerapan clean architecture pada aplikasi Flutter?**
+
 Penerapan clean architecture pada aplikasi Flutter melibatkan organisasi kode menjadi beberapa lapisan yang terpisah, masing-masing dengan tanggung jawab spesifik:
 
 - `Presentation Layer`: Mengelola UI dan interaksi pengguna, biasanya melalui widget dan logic UI Flutter.
