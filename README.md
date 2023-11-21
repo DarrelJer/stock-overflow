@@ -1,3 +1,68 @@
+# **TUGAS 8**
+
+**1. Jelaskan perbedaan antara Navigator.push() dan Navigator.pushReplacement(), disertai dengan contoh mengenai penggunaan kedua metode tersebut yang tepat!**
+
+
+`Navigator.push()`: Metode ini digunakan untuk menambahkan halaman baru ke tumpukan navigasi. 
+Dengan kata lain, Navigator.push() akan menambahkan halaman baru ke tumpukan dan pengguna dapat kembali ke halaman sebelumnya dengan tombol tertentu atau metode Navigator.pop().
+Contoh penggunaan Navigator.push():
+```
+Navigator.push(
+  context,
+  MaterialPageRoute(
+    builder: (context) => SecondScreen(),
+  ),
+);
+```
+
+`Navigator.pushReplacement()`: Metode ini digunakan untuk menggantikan halaman saat ini dengan halaman baru. 
+Ini berarti bahwa ketika kira menggunakan Navigator.pushReplacement(), halaman saat ini akan dihapus dari tumpukan navigasi dan digantikan oleh halaman baru. Pengguna tidak dapat kembali ke halaman sebelumnya dengan tombol Back.
+Contoh penggunaan Navigator.pushReplacement():
+```
+Navigator.pushReplacement(
+  context,
+  MaterialPageRoute(
+    builder: (context) => NewScreen(),
+  ),
+);
+```
+**2. Jelaskan masing-masing layout widget pada Flutter dan konteks penggunaannya masing-masing!**
+- Column & Row: Column mengatur elemen secara vertikal, sedangkan Row mengatur elemen secara horizontal.
+- Container: Wadah untuk mengatur tata letak dan memberi styling pada elemen, misalnya padding, margin, alignment, etc.
+- Stack: Digunakan untuk menumpuk widget/elemen satu di atas yang lain.
+- GridView: Menampilkan elemen dalam grid yang teratur dengan bentuk tabel.
+- ListView: Menampilkan elemen yang dapat di-scroll secara vertikal.
+- Expanded & Flexible: Mengontrol bagian dari ruang yang tersedia yang digunakan. Expanded mengisi ruang tersedia, sedangkan Flexible memberikan lebih banyak kontrol atas faktor fleksibilitas.
+- Padding: Memberikan padding di sekeliling elemen child.
+- Transform: digunakan untuk mengubah ukuran dan posisi elemen child
+- Align: Mengatur posisi elemen child sesuai dengan alignment yang ditentukan.
+- Wrap: Membuat row atau column dan secara otomatis beralih ke row atau column berikutnya setelah ruang di row atau column saat ini habis.
+- Scaffold: Memberikan struktur dasar material design seperti AppBar, Drawer, dan FloatingActionButton.
+- ConstrainedBox, SizedBox, & AspectRatio: Mengontrol ukuran atau aspek rasio dari elemen childnya.
+
+  
+**3. Sebutkan apa saja elemen input pada form yang kamu pakai pada tugas kali ini dan jelaskan mengapa kamu menggunakan elemen input tersebut!**
+   
+`TextFormField` digunakan untuk mengambil input teks seperti nama, harga, dan deskripsi.
+- Memiliki fitur pendukung untuk validasi input melalui properti validator, memastikan bahwa data yang dimasukkan sesuai dengan aturan yang diinginkan.
+- Memungkinkan untuk menyesuaikan tampilan input, seperti menambahkan placeholder, label, dan border melalui properti decoration.
+
+`ElevatedButton` 
+- Memberikan tombol yang dapat diklik untuk memicu aksi terkait formulir, dalam hal ini, menyimpan data produk ke daftar.
+
+**4.Bagaimana penerapan clean architecture pada aplikasi Flutter?**
+
+Penerapan clean architecture pada aplikasi Flutter melibatkan organisasi kode menjadi beberapa lapisan yang terpisah, masing-masing dengan tanggung jawab spesifik:
+
+- `Presentation Layer`: Mengelola UI dan interaksi pengguna, biasanya melalui widget dan logic UI Flutter.
+- `Business Logic Layer (Domain Layer)`: Berisi logic bisnis aplikasi termasuk entities dan use cases. Independen dari framework dan UI.
+- `Data Layer`: Bertanggung jawab atas pengelolaan data, termasuk repositori, model data, dan sumber data (API, database lokal).
+- `Dependency Injection`: Menggunakan teknik seperti provider atau get_it untuk mengurangi ketergantungan langsung antar komponen. Tujuan utama clean architecture adalah untuk memisahkan concerns, meningkatkan modularitas, dan memudahkan pengujian. Implementasi ini membantu dalam mengelola dependensi, membuat kode lebih mudah dikelola dan diuji.
+  
+**5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step! (bukan hanya sekadar mengikuti tutorial)**
+
+
+
 # **Tugas 7**
 
 **1. Apa perbedaan utama antara stateless dan stateful widget dalam konteks pengembangan aplikasi Flutter?**
