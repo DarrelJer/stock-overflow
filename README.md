@@ -1,3 +1,278 @@
+## **TUGAS 9**
+**1. Apakah bisa kita melakukan pengambilan data JSON tanpa membuat model terlebih dahulu? Jika iya, apakah hal tersebut lebih baik daripada membuat model sebelum melakukan pengambilan data JSON?**
+Bisa, data JSON dapat langsung diproses dan diakses sebagai struktur data generik. Hal ini memudahkan penggunaan data JSON tanpa perlu mendefinisikan model atau kelas khusus terlebih dahulu.
+
+- Mengambil Data JSON Tanpa Model:
+    - Dapat bekerja dengan fleksibilitas data yang strukturnya mungkin tidak tetap
+    - Lebih mudah dan cepat
+    - Dinamis, berguna ketika berinteraksi dengan API yang mungkin mengembalikan berbagai jenis respons
+- Menggunakan Model untuk Data JSON:
+    - Validasi data yang lebih baik
+    - Kode lebih mudah dipahami dan dipelihara, terutama untuk proyek yang lebih besar
+    - Keamanan, membantu mencegah kesalahan tertentu, seperti injeksi data yang tidak aman
+
+**2. Jelaskan fungsi dari CookieRequest dan jelaskan mengapa instance CookieRequest perlu untuk dibagikan ke semua komponen di aplikasi Flutter.**
+`CookieRequest` biasanya merujuk pada sebuah kelas atau mekanisme yang digunakan untuk menangani cookies dalam permintaan HTTP. Cookie sering digunakan untuk menyimpan informasi seperti preferensi pengguna, data sesi, dan token autentikasi.
+
+**Pentingnya CookieRequest: **
+- Membagikan instance `CookieRequest` yang sama ke seluruh komponen aplikasi dapat memastikan bahwa semua permintaan HTTP menggunakan cookies yang sama untuk menjaga konsistensi sesi dan pengaturan pengguna.
+- Jika setiap komponen membuat instance `CookieRequest` sendiri, hal ini bisa menyebabkan konflik atau redundansi dalam pengelolaan cookies, seperti masuk atau keluar sesi yang tidak konsisten di seluruh aplikasi.
+- Membagikan instance yang sama mengurangi overhead karena tidak perlu membuat dan mengonfigurasi instance baru setiap kali membuat permintaan HTTP. Ini meningkatkan efisiensi dan performa aplikasi.
+- Dengan menggunakan instance `CookieRequest` tunggal yang digunakan di seluruh aplikasi, hal ini dapat memudahkan untuk mengatur, memodifikasi, dan men-debug isu yang terkait dengan permintaan HTTP dan pengelolaan cookies.
+
+**3. Jelaskan mekanisme pengambilan data dari JSON hingga dapat ditampilkan pada Flutter.**
+- Pertama, kita perlu mengirim permintaan HTTP ke server web atau API yang menyediakan data dalam format JSON. Flutter menyediakan paket seperti http untuk menangani permintaan HTTP.
+- Kemudian Setelah permintaan terkirim, kita akan menerima respons dari server. Kita harus memeriksa status respons untuk memastikan permintaan berhasil.
+- Jika respons berhasil, kemudian kita akan parsing teks JSON yang diterima menjadi struktur data Dart.
+- Terakhir, kita menggunakan data ini untuk membangun widget di Flutter. Kita bisa menggunakan StatefulWidget untuk memanipulasi state untuk menampilkan list data.
+- 
+**4. Jelaskan mekanisme autentikasi dari input data akun pada Flutter ke Django hingga selesainya proses autentikasi oleh Django dan tampilnya menu pada Flutter.**
+- Pertama, kita akan meminta input dengan menggunakan form
+- Setelah data diinput, aplikasi Flutter akan mengirimkannya ke server Django menggunakan permintaan HTTP POST. Data dikirim dalam format yang dapat diterima oleh Django.
+- Di sisi server Django, kita akan memiliki endpoint yang ditujukan untuk menangani permintaan autentikasi ini. Django akan memproses data yang diterima.
+- Aplikasi Flutter akan menerima respons dari Django. Respons ini biasanya berisi konfirmasi berhasil atau gagalnya autentikasi, dan mungkin juga token autentikasi.
+- Berdasarkan respons dari Django, Flutter kemudian menampilkan UI yang sesuai. Jika autentikasi berhasil, Flutter dapat menavigasi pengguna ke halaman utama atau menu. Jika gagal, Flutter akan menampilkan pesan error.
+  
+**5. Sebutkan seluruh widget yang kamu pakai pada tugas ini dan jelaskan fungsinya masing-masing.**
+ **Provider:** Mengelola dan menyediakan data ke seluruh aplikasi.
+- **MaterialApp:** Root widget yang mengatur tema dan navigasi untuk aplikasi berbasis material design.
+- **Scaffold:** Menyediakan kerangka dasar untuk layout halaman, termasuk AppBar, Drawer, dan Body.
+- **AppBar:** Menampilkan bar di bagian atas layar, biasanya berisi judul halaman.
+- **Container:** Widget untuk mendekorasi dan menyusun child widget lainnya, sering digunakan untuk padding.
+- **Column:** Mengatur child widget secara vertikal.
+- **TextField:** Mengizinkan pengguna memasukkan teks.
+- **SizedBox:** Memberikan jarak tetap antara widget.
+- **ElevatedButton:** Tombol dengan efek elevasi, digunakan untuk memicu aksi.
+- **FutureBuilder:** Membangun widget berdasarkan hasil terakhir dari Future, digunakan untuk operasi asinkron.
+- **ListView.builder:** Membuat daftar item yang dapat di-scroll.
+- **Text:** Menampilkan teks.
+- **Padding:** Menambahkan padding di sekitar widget anaknya.
+- **AlertDialog:** Menampilkan dialog kepada pengguna, biasanya untuk konfirmasi atau informasi.
+- **TextButton:** Tombol dengan gaya teks, biasanya digunakan dalam dialog.
+- **Form:** Mengelola state dari form dan validasi input.
+- **GlobalKey<FormState>:** Key yang digunakan untuk mengidentifikasi state dari `Form`.
+- **TextEditingController:** Mengontrol teks yang ditampilkan dan diubah dalam `TextField`.
+- **SnackBar:** Menampilkan pesan singkat di bagian bawah layar.
+- **Navigator:** Mengelola stack rute dan navigasi antar halaman.
+- **MaterialPageRoute:** Membuat transisi halaman dengan gaya material design.
+- **LeftDrawer:** Widget kustom yang bertindak sebagai menu navigasi samping.
+  
+**6. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step!**
+- Pertama, saya membuat halaman login pada proyek tugas dengan nama file `login.dart` dengan isi sebagai berikut
+```
+  import 'package:stockoverflow/screens/menu.dart';
+import 'package:flutter/material.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:provider/provider.dart';
+
+void main() {
+  runApp(const LoginApp());
+}
+
+class LoginApp extends StatelessWidget {
+  const LoginApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Login',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: const LoginPage(),
+    );
+  }
+}
+
+class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
+
+  @override
+  _LoginPageState createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    final request = context.watch<CookieRequest>();
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Login'),
+        automaticallyImplyLeading: false, // Remove back button
+      ),
+      body: Container(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            TextField(
+              controller: _usernameController,
+              decoration: const InputDecoration(
+                labelText: 'Username',
+              ),
+            ),
+            const SizedBox(height: 12.0),
+            TextField(
+              controller: _passwordController,
+              decoration: const InputDecoration(
+                labelText: 'Password',
+              ),
+              obscureText: true,
+            ),
+            const SizedBox(height: 24.0),
+            ElevatedButton(
+              onPressed: () async {
+                String username = _usernameController.text;
+                String password = _passwordController.text;
+
+                // Check credentials
+                // TODO: Change the URL and don't forget to add a trailing slash (/) at the end of the URL!
+                // To connect the Android emulator to Django on localhost,
+                // use the URL http://10.0.2.2/
+                final response =
+                    await request.login("http://127.0.0.1:8000/auth/login/", {
+                  'username': username,
+                  'password': password,
+                });
+
+                if (request.loggedIn) {
+                  String message = response['message'];
+                  String uname = response['username'];
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => MyHomePage()),
+                  );
+                  ScaffoldMessenger.of(context)
+                    ..hideCurrentSnackBar()
+                    ..showSnackBar(
+                        SnackBar(content: Text("$message Welcome, $uname.")));
+                } else {
+                  showDialog(
+                    context: context,
+                    builder: (context) => AlertDialog(
+                      title: const Text('Login Failed'),
+                      content: Text(response['message']),
+                      actions: [
+                        TextButton(
+                          child: const Text('OK'),
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                        ),
+                      ],
+                    ),
+                  );
+                }
+              },
+              child: const Text('Login'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+```
+- Mengintegrasikan sistem autentikasi Django dengan proyek tugas Flutter dengan melakukan setup integrasi pada proyek django seperti yang ada pada tutorial dan menginstall package yang telah disediakan
+- Kemudian saya membuat model kustom melalui website Quicktype dan saya paste hasil dari Quicktype ke dalam sebuah file baru pada `lib/models/product.dart`
+- Selanjutnya saya membuat halaman yang berisi daftar semua item yang terdapat pada endpoint JSON di Django yang telah di deploy dengan membuat file baru `lib/screens/list_product.dart`
+- Selanjutnya saya membuat halaman detail untuk setiap item yang terdapat pada halaman daftar Item. Sehingga `list_product.dart` saya menjadi seperti ini:
+```
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'package:stockoverflow/models/product.dart';
+import 'package:stockoverflow/widgets/show_drawer.dart';
+
+class ItemPage extends StatefulWidget {
+    const ItemPage({Key? key}) : super(key: key);
+
+    @override
+    _ProductPageState createState() => _ProductPageState();
+}
+
+class _ProductPageState extends State<ItemPage> {
+Future<List<Item>> fetchItem() async {
+    var url = Uri.parse(
+        'http:////127.0.0.1:8000/json/');
+    var response = await http.get(
+        url,
+        headers: {"Content-Type": "application/json"},
+    );
+    var data = jsonDecode(utf8.decode(response.bodyBytes));
+
+    // melakukan konversi data json menjadi object Product
+    List<Item> list_item = [];
+    for (var d in data) {
+        if (d != null) {
+            list_item.add(Item.fromJson(d));
+        }
+    }
+    return list_item;
+}
+
+@override
+Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+        title: const Text('Item'),
+        ),
+        drawer: const LeftDrawer(),
+        body: FutureBuilder(
+            future: fetchItem(),
+            builder: (context, AsyncSnapshot snapshot) {
+                if (snapshot.data == null) {
+                    return const Center(child: CircularProgressIndicator());
+                } else {
+                    if (!snapshot.hasData) {
+                    return const Column(
+                        children: [
+                        Text(
+                            "Tidak ada data produk.",
+                            style:
+                                TextStyle(color: Color(0xff59A5D8), fontSize: 20),
+                        ),
+                        SizedBox(height: 8),
+                        ],
+                    );
+                } else {
+                    return ListView.builder(
+                        itemCount: snapshot.data!.length,
+                        itemBuilder: (_, index) => Container(
+                                margin: const EdgeInsets.symmetric(
+                                    horizontal: 16, vertical: 12),
+                                padding: const EdgeInsets.all(20.0),
+                                child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                    Text(
+                                    "${snapshot.data![index].fields.name}",
+                                    style: const TextStyle(
+                                        fontSize: 18.0,
+                                        fontWeight: FontWeight.bold,
+                                    ),
+                                    ),
+                                    const SizedBox(height: 10),
+                                    Text("${snapshot.data![index].fields.price}"),
+                                    const SizedBox(height: 10),
+                                    Text(
+                                        "${snapshot.data![index].fields.description}")
+                                ],
+                                ),
+                            ));
+                    }
+                }
+            }));
+    }
+}
+```
+
+
+
 # **TUGAS 8**
 
 **1. Jelaskan perbedaan antara Navigator.push() dan Navigator.pushReplacement(), disertai dengan contoh mengenai penggunaan kedua metode tersebut yang tepat!**
