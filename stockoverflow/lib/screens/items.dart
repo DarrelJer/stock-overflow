@@ -3,9 +3,9 @@ import 'package:stockoverflow/models/item_model.dart';
 import 'package:stockoverflow/widgets/show_drawer.dart';
 
 class ProductListPage extends StatelessWidget {
-  final List<Product> products; 
+  final List<Item> items; 
 
-  const ProductListPage({Key? key, required this.products})
+  const ProductListPage({Key? key, required this.items})
       : super(key: key);
 
   @override
@@ -18,26 +18,26 @@ class ProductListPage extends StatelessWidget {
       ),
       drawer: const LeftDrawer(),
       body: ListView.builder(
-        itemCount: products.length,
+        itemCount: items.length,
         itemBuilder: (context, index) {
           return Card(
             elevation: 5,
             margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
             child: ListTile(
-              title: Text(products[index].name),
-              subtitle: Text('Harga: ${products[index].price}'),
+              title: Text(items[index].name),
+              subtitle: Text('Harga: ${items[index].price}'),
               onTap: () {
                 showDialog(
                   context: context,
                   builder: (context) {
                     return AlertDialog(
-                      title: Text(products[index].name),
+                      title: Text(items[index].name),
                       content: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          Text('Harga: ${products[index].price}'),
-                          Text('Deskripsi: ${products[index].description}'),
+                          Text('Harga: ${items[index].price}'),
+                          Text('Deskripsi: ${items[index].description}'),
                         ],
                       ),
                       actions: [

@@ -3,6 +3,7 @@ import 'package:stockoverflow/main.dart';
 import 'package:stockoverflow/screens/menu.dart';
 import 'package:stockoverflow/screens/forms.dart';
 import 'package:stockoverflow/screens/items.dart';
+import 'package:stockoverflow/screens/list_product.dart';
 
 class LeftDrawer extends StatelessWidget {
   const LeftDrawer({super.key});
@@ -56,7 +57,7 @@ class LeftDrawer extends StatelessWidget {
             onTap: () 
                   {
                 Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => ProductListPage(products: products)));
+                  MaterialPageRoute(builder: (context) => ProductListPage(items: items)));
               }
             ,
           ),
@@ -68,6 +69,17 @@ class LeftDrawer extends StatelessWidget {
                     MaterialPageRoute(builder: (context) => const ShopFormPage()));
             },
           ),
+          ListTile(
+            leading: const Icon(Icons.shopping_basket),
+            title: const Text('Daftar Item'),
+            onTap: () {
+                
+                Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const ItemPage()),
+                );
+            },
+        ),
         ],
       ),
     );
